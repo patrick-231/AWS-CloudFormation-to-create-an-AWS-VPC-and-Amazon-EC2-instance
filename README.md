@@ -1,4 +1,4 @@
-# **AWS CloudFormation Template to Create an AWS VPC and Amazon EC2 Instance** 🌫️
+# **AWS CloudFormation Template to Create an AWS VPC and Amazon EC2 Instance** ☁️
 
 This is a CloudFormation template that creates a VPC, internet gateway, private subnet, security group, and an EC2 instance in AWS.
 
