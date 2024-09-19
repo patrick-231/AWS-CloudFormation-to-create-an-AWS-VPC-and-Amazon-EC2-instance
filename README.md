@@ -30,6 +30,8 @@ This is a CloudFormation template that creates a VPC, internet gateway, private 
 - A security group that allows SSH from anywhere
 - An EC2 instance with the specified image and instance type, launched in the private subnet
 
+## Resources Created by this Template
+
 ![Resources Created](resources.png)
 
 ## Usage
