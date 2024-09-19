@@ -1,8 +1,8 @@
-# AWS-CloudFormation-to-create-an-AWS-VPC-and-Amazon-EC2-instance
+# **AWS CloudFormation Template to Create an AWS VPC and Amazon EC2 Instance** 🌫️
 
 This is a CloudFormation template that creates a VPC, internet gateway, private subnet, security group, and an EC2 instance in AWS.
 
-## Parameters
+## **Parameters** 📝
 
 ### `LabVpcCidr`
 
@@ -22,7 +22,7 @@ This is a CloudFormation template that creates a VPC, internet gateway, private 
 - Default: `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2`
 - Description: The ID of the Amazon Linux image to use for the EC2 instance
 
-## Resources Created
+## **Resources Created** 🚀
 
 - A VPC with the specified CIDR block
 - An internet gateway attached to the VPC
@@ -30,11 +30,11 @@ This is a CloudFormation template that creates a VPC, internet gateway, private 
 - A security group that allows SSH from anywhere
 - An EC2 instance with the specified image and instance type, launched in the private subnet
 
-## Resources Created by this Template
+## **Resources Created by this Template** 📸
 
-![Resources Created](resources.png)
+![AWS Resources Overview](resources.png)
 
-## Usage
+## **Usage** 📊
 
 1. Create a new CloudFormation stack in AWS and upload this template file.
 2. Fill in the required parameters (e.g. `LabVpcCidr`, `PrivateSubnetCidr`, and `AmazonLinuxAMIID`).
@@ -42,10 +42,10 @@ This is a CloudFormation template that creates a VPC, internet gateway, private 
 4. Wait for the stack to complete (this may take a few minutes).
 5. Once the stack is complete, you can access the EC2 instance using SSH and the public IP address of the instance.
 
-## Note
+## **Note** 🚨
 
 This template is for lab and testing purposes only. Make sure to modify the template to fit your specific needs and security requirements before using it in production.
 
-## License
+## **License** 📝
 
 This template is licensed under the MIT License. See the LICENSE file for more information.
