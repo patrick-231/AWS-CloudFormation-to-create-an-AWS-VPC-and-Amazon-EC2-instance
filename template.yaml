@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: Lab VPC and EC2 Instance Template
+
+Parameters:
+  LabVpcCidr:
+    Type: String
+    Default: 192.168.0.0/24
+    Description: The CIDR block for the VPC
+
+  PrivateSubnetCidr:
+    Type: String
+    Default: 192.168.0.128/27
+    Description: The CIDR block for the private subnet
+
+  AmazonLinuxAMIID:
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+    Description: The ID of the Amazon Linux image to use for the EC2 instance
+
+Resources:
+  MyVPC:
+    Type: "AWS::EC2::VPC"
+    Properties:
+      CidrBlock: !Ref LabVpcCidr
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: stack
+          Value: testing
+
+  MyInternetGateway:
+    Type: "AWS::EC2::InternetGateway"
+    Properties:
+      Tags:
+        - Key: stack
+          Value: testing
+
+  MyVPCGatewayAttachment:
+    Type: "AWS::EC2::VPCGatewayAttachment"
+    Properties:
+      VpcId: !Ref MyVPC
+      InternetGatewayId: !Ref MyInternetGateway
+
+  MyPrivateSubnet:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: !Ref PrivateSubnetCidr
+      AvailabilityZone: "us-west-2a"
+      Tags:
+        - Key: stack
+          Value: testing
+
+  MySecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Allow SSH from anywhere
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: stack
+          Value: testing-security-group
+
+  MyEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: t3.micro
+      ImageId: !Ref AmazonLinuxAMIID
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      SubnetId: !Ref MyPrivateSubnet
+      Tags:
+        - Key: stack
+          Value: testing-ec2
