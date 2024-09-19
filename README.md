@@ -48,4 +48,4 @@ This template is for lab and testing purposes only. Make sure to modify the temp
 
 ## **License** 📝
 
-This template is licensed under the MIT License. See the LICENSE file for more information.
+This template is licensed under the MIT License. See the LICENSE file for more details.
